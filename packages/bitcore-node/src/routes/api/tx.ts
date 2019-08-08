@@ -43,6 +43,7 @@ router.get('/:txId', async (req, res) => {
   network = network.toLowerCase();
   try {
     const tx = await ChainStateProvider.getTransaction({ chain, network, txId });
+    const coins = ChainStateProvider.getCoinsForTx({ chain, network, txid: txId });
     if (!tx) {
       return res.status(404).send(`The requested txid ${txId} could not be found.`);
     } else {
@@ -50,6 +51,7 @@ router.get('/:txId', async (req, res) => {
       if (tx && tip && tip.height - tx.blockHeight > 100) {
         SetCache(res, CacheTimes.Month);
       }
+      Object.assign(tx, coins);
       return res.send(tx);
     }
   } catch (err) {
