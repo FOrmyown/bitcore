@@ -43,7 +43,7 @@ router.get('/:txId', async (req, res) => {
   network = network.toLowerCase();
   try {
     const tx = await ChainStateProvider.getTransaction({ chain, network, txId });
-    const coins = ChainStateProvider.getCoinsForTx({ chain, network, txid: txId });
+    const coins = await ChainStateProvider.getCoinsForTx({ chain, network, txid: txId });
     if (!tx) {
       return res.status(404).send(`The requested txid ${txId} could not be found.`);
     } else {
