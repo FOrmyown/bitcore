@@ -1,0 +1,28 @@
+{
+  "bitcoreNode": {
+    "services": {
+      "api": {
+        "rateLimiter": {
+          "disabled": true
+        }
+      }
+    },
+    "chains": {
+      "BTC": {
+        "mainnet": {
+          "chainSource": "p2p",
+          "trustedPeers": [{
+            "host": "127.0.0.1",
+            "port": 20008
+          }],
+          "rpc": {
+            "host": "127.0.0.1",
+            "port": 20009,
+            "username": "username",
+            "password": "password"
+          }
+        }
+      }
+    }
+  }
+}
